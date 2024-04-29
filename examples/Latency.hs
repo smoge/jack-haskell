@@ -6,7 +6,7 @@ import qualified Sound.JACK.Audio as Audio
 import qualified Sound.JACK as JACK
 import System.Environment (getProgName, )
 import Data.IORef
-import Common
+import Common (mainWait)
 
 main :: IO ()
 main = do

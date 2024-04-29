@@ -1,4 +1,4 @@
-module Common where
+module Common (mainWait) where
 
 import qualified Sound.JACK as Jack
 import qualified Sound.JACK.Exception as JackExc

@@ -50,9 +50,9 @@ intFromNFrames (JACK.NFrames n) = fromIntegral n
 
 runStateOnIORef :: IORef s -> MS.State s a -> IO a
 runStateOnIORef ref m = do
-    (a, state) <- fmap (MS.runState m) $ readIORef ref
+    (a, state) <- MS.runState m <$> readIORef ref
     writeIORef ref state
-    return a
+    pure a
 
 process ::
     JACK.Client ->

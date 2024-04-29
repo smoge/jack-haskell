@@ -28,7 +28,7 @@ process ::
 process output nframes = Trans.lift $ do
     outArr <- Audio.getBufferArray output nframes
     case JACK.nframesIndices nframes of
-        [] -> return ()
+        [] -> pure ()
         zero:rest -> do
             writeArray outArr zero 1
             mapM_ (\i -> writeArray outArr i 0) rest

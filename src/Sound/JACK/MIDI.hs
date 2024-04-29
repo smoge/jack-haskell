@@ -141,7 +141,7 @@ getBuffer ::
     Direction dir =>
     Port dir -> NFrames -> IO (Buffer dir)
 getBuffer (Priv.Port port) n =
-    fmap Buffer $ JackFFI.port_get_buffer port n
+    Buffer <$> JackFFI.port_get_buffer port n
 
 clearBuffer :: Buffer Output -> IO ()
 clearBuffer portBuffer =
@@ -165,7 +165,7 @@ readRawEventsFromPort ::
     Port Input -> NFrames ->
     Sync.ExceptionalT e IO [RawEvent]
 readRawEventsFromPort port nframes =
-    readRawEvents =<< (Trans.lift $ getBuffer port nframes)
+    readRawEvents =<< Trans.lift (getBuffer port nframes)
 
 {- |
 Clears an output buffer and writes a sequence of events to it.

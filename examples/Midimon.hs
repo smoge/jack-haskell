@@ -15,5 +15,5 @@ foo (NFrames cycleStart) (tf@(NFrames t), e) = do
        case e of
           Msg.Channel b -> "MidiMsg.Channel " ++ show b
           Msg.System  _ -> "MidiMsg.System ..."
-    return (tf, e)
+    pure (tf, e)
 

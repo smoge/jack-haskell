@@ -53,8 +53,7 @@ withPort = Jack.withPort
 getBufferPtr ::
     (Direction dir) =>
     Port dir -> NFrames -> IO (Ptr Sample)
-getBufferPtr (Priv.Port port) nframes =
-    JackFFI.port_get_buffer port nframes
+getBufferPtr (Priv.Port port) = JackFFI.port_get_buffer port
 
 getBufferArray ::
     (Direction dir) =>

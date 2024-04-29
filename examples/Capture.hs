@@ -1,4 +1,4 @@
-{- |
+{-
 This program creates a number of input ports
 according to a list of given port names.
 It captures the audio data from these ports

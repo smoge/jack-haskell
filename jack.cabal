@@ -1,6 +1,6 @@
 cabal-version:      2.2
 name:               jack
-version:            0.7.2.4
+version:            0.7.2.3
 license:            GPL-3.0-only
 license-file:       LICENSE
 author:

@@ -4,7 +4,6 @@ Version:            0.7.2.3
 License:            GPL-2.0-only
 License-File:       LICENSE
 Author:             Henning Thielemann, Stefan Kersten, Soenke Hahn <soenkehahn@gmail.com>
-Maintainer:         Henning Thielemann <haskell@henning-thielemann.de>
 Synopsis:           Bindings for the JACK Audio Connection Kit
 Description:
   Bindings for the JACK Audio Connection Kit <http://jackaudio.org/>.
@@ -18,8 +17,7 @@ Description:
 Homepage:           http://www.haskell.org/haskellwiki/JACK
 Category:           Sound
 Build-Type:         Simple
-Tested-With:        GHC==7.4.2, GHC==7.6.3, GHC==7.8.4
-Tested-With:        GHC==8.4.4, GHC==8.6.5, GHC==9.0.1
+Tested-With:        GHC==9.6.4
 Extra-Source-Files:
   CHANGELOG
   INSTALL

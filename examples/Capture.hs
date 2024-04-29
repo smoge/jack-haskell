@@ -84,4 +84,4 @@ wrapFun st inputs nframes _args = do
         n <- getNumElements output
         dummy <- peek p
         IO.hPutBuf st p $ sizeOf dummy * n
-    return eOK
+    pure eOK

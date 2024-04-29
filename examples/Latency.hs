@@ -24,7 +24,7 @@ process :: IORef CFloat -> CFloat -> IO CFloat
 process r v = do
     v' <- readIORef r
     writeIORef r v
-    return v'
+    pure v'
 
 latency ::
     Audio.Port JACK.Input  ->

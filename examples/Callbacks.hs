@@ -8,7 +8,7 @@ import qualified Foreign.C.Error as E
 import qualified Sound.JACK.Audio as Audio
 import qualified Sound.JACK as JACK
 import System.Environment (getProgName, )
-import Common
+import Common (mainWait)
 
 main :: IO ()
 main = do
@@ -30,7 +30,7 @@ main = do
             mainWait client name
 
 process :: CFloat -> IO CFloat
-process s = return s
+process = pure
 
 -- Signals entering freewheel mode
 freewheel :: Bool -> IO ()

@@ -8,3 +8,8 @@ runhaskell Setup install
 More information:
 
 runhaskell Setup help
+
+
+--
+
+cabal configure --extra-lib-dirs=/usr/lib64/pipewire-0.3/jack --extra-include-dirs=/usr/include/jack  -fbuildExamples -f-pkgConfig -f-jackFree

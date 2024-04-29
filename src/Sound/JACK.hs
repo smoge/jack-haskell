@@ -1,27 +1,6 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
 
-{-
-    JACK bindings for Haskell
-    Copyright (C) 2011-2013 Henning Thielemann
-    Copyright (C) 2007 Soenke Hahn
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
--}
-
 -- |
---
 -- The Jack module defines types and functions that allows you to
 -- use the JACK Audio Connection Kit.
 module Sound.JACK
@@ -281,7 +260,7 @@ checkStatus ::
 checkStatus c s = do
   errCode <- Trans.lift $ peek s
   Sync.assertT (JackExc.status errCode) (c /= nullPtr)
-  return errCode
+  pure errCode
 
 newPortByType ::
   ( PortType typ,
@@ -769,11 +748,11 @@ recomputeTotalLatencies (Client ptr) =
 
 getBufferSize :: Client -> IO Int
 getBufferSize (Client ptr) =
-  fmap fromIntegral $ JackFFI.get_buffer_size ptr
+  fromIntegral <$> JackFFI.get_buffer_size ptr
 
 getSampleRate :: Client -> IO Int
 getSampleRate (Client ptr) =
-  fmap fromIntegral $ JackFFI.get_sample_rate ptr
+  fromIntegral <$> JackFFI.get_sample_rate ptr
 
 {-
 Call this function from within a callback
@@ -878,8 +857,7 @@ portById ::
   JackFFI.PortId ->
   IO (Port JackFFI.UnknownType UnknownDirection)
 portById client portId =
-  fmap Port $
-    JackFFI.port_by_id (getClient client) portId
+  Port <$> JackFFI.port_by_id (getClient client) portId
 
 portByName ::
   Client ->
@@ -1005,7 +983,7 @@ narrowPortDirectionMaybe (Const dir) flags (Port port) =
       (not $ ES.disjoint flags dir)
 
 liftExc :: (Monad m) => Sync.Exceptional e a -> Sync.ExceptionalT e m a
-liftExc = Sync.ExceptionalT . return
+liftExc = Sync.ExceptionalT . pure
 
 altExc :: Sync.Exceptional e a -> Sync.Exceptional e a -> Sync.Exceptional e a
 altExc x y = Sync.switch (const y) Sync.Success x

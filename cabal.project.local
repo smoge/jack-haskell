@@ -1,0 +1,4 @@
+ignore-project: False
+extra-include-dirs: /usr/include/jack
+extra-lib-dirs: /usr/lib64/pipewire-0.3/jack
+flags: +buildexamples -jackfree -pkgconfig
